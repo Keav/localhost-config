@@ -1,0 +1,20 @@
+# ======================
+# Ignore everything
+# ======================
+
+*
+
+# ======================
+# Allow only these
+# ======================
+
+# git Files
+# ======================
+
+!.gitignore
+!.gitattributes
+
+# Projcet Files
+# ======================
+
+!README.md
