@@ -54,6 +54,7 @@ By default, your localhost folder is located here:
 
 The following changes the default location that files will be served from to a location of your choice and opens up the permissions for that location.
 
+**NB:** The line for `Require local` (or `Require all granted`) is only required for Apache versions >= 2.4. If you include it in lower versions it will result in **500 Internal Server Error**.
 ```ApacheConf
 # First we open up the permissions
 <Directory "D:/path_to/your_default_localhost_folder/">
