@@ -60,7 +60,7 @@ The following changes the default location that files will be served from to a l
 <Directory "D:/path_to/your_default_localhost_folder/">
     Options Indexes FollowSymLinks
     AllowOverride All
-    Require local // Remove for Apache versions < 2.4
+    Require local # Remove for Apache versions < 2.4
 </Directory>
 
 # Then we set the host name
