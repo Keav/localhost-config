@@ -2,6 +2,11 @@
 ####Instructions for setting up a localhost developer environment.
 Includes creating Virtual Hosts, securing phpMyAdmin and something useful you can do in your Wordpress `wp-config.php` file, once you've set it all up.
 
+## Table of Contents
+
+* [Wordpress](#Wordpress-Bonus)
+* [MAMP APPENDIX](#MAMP-APPENDIX)
+
 ## Tools
 
 - WAMP - http://www.wampserver.com/en/
@@ -224,3 +229,62 @@ in your localhost section.
     define('WP_HOME', 'http://'.$_SERVER['HTTP_HOST'].'');
     define('WP_SITEURL', 'http://'.$_SERVER['HTTP_HOST'].'');
 ```
+
+## MAMP APPENDIX
+
+MAMP can be a little tedious sometimes, so here are a few things that should make your experience with MAMP a little easier.
+
+1. **MAMP prompts for your password on every startup and shutdown**
+
+    This occurs when you're using a port lower than 1024. If you don't want to have to append the port everytime you view one of your local sites, e.g. `localhost:8888`, then you can set MAMP to use the default port `80`. Unfortunately, this causes OS X to prompt for your password to allow it. There is no good (secure) workaround for this that I've discovered.
+
+2. **You are prompted to allow mysql network access everytime it starts**
+
+    Despite being set as an allowed application in the firewall, I was still prompted for this every single time.
+    The answer is to create a self signed certificate and apply it to mysql.
+
+    See this StackExchange Question http://apple.stackexchange.com/questions/3271/how-to-get-rid-of-firewall-accept-incoming-connections-dialog
+    
+    Just in case it ever vanishes:
+    
+  ```
+  1) Create your own code signing cert:
+
+  In Keychain Access, Keychain Access > Certificate Assistant > Create a certificate. This launches the Certificate Assistant:
+
+  Name: Enter some arbitrary string here that you can remember. Avoid spaces otherwise you'll need to escape the cert's name when using codesign from the command line.
+
+  Identity type: Self Signed Root
+
+  Certificate Type: Code Signing
+
+  Check the box "Let me override defaults", this is quite important
+
+  Serial number: 1 (OK as long as the cert name/serial no. combination is unique)
+
+  Validity Period: 3650 (gives you 10 years)
+
+  Email, Name, etc. fill out as you wish.
+
+  Key pair info: set to RSA, 2048 bits. Does not really matter IMHO.
+
+  From "Key usage extension" up to "Subject Alternate Name Extension": accept the defaults.
+
+  Location: login keychain.
+
+  Once it is created, set to "Always trust" in the Login keychain.
+
+  2) Re-signing an app: codesign -f -s <certname> /path/to/app --deep
+
+  3) Verify that it worked: codesign -dvvvv /path/to/app
+  ```
+
+3. **Use MAMP's MySQL from the Terminal**
+
+  Add the following to your `.bash_profile`:
+
+  ```
+  alias mysql='/Applications/MAMP/Library/bin/mysql -uroot -p'
+  ```
+
+  Now, just typing `mysql` in the Terminal will attempt to launch mysql as `root` (MySQL `root`, not your OS X `root`) and   will prompt you for the `root` password.
