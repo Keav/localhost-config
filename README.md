@@ -4,8 +4,8 @@ Includes creating Virtual Hosts, securing phpMyAdmin and something useful you ca
 
 ## Table of Contents
 
-* [Wordpress](#Wordpress-Bonus)
-* [MAMP APPENDIX](#MAMP-APPENDIX)
+* [Wordpress](#wordpress-bonus)
+* [MAMP APPENDIX](#mamp-appendix)
 
 ## Tools
 
