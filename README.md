@@ -52,6 +52,12 @@ Include D:/your_path/local-development.conf
 First, we're going to set (override) some options that are already present in Apache's default `httpd.conf` file.
 The default `httpd.conf` file contains many comments explaining what each setting does. I encourage you to look through the `httpd.conf` file itself if you're still learning.
 
+Add the following line to enable 'mod_rewrite' in Apache. This enables the use of `.htaccess` files.
+
+```
+LoadModule rewrite_module modules/mod_rewrite.so
+```
+
 By default, your localhost folder is located here:
 
 - Windows - `C:\wamp\www`
