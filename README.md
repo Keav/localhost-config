@@ -66,12 +66,18 @@ By default, your localhost folder is located here:
 The following changes the default location that files will be served from to a location of your choice and opens up the permissions for that location.
 
 **NB:** The line for `Require local` (or `Require all granted`) is only required for Apache versions >= 2.4. If you include it in lower versions it will result in **500 Internal Server Error**.
+
+..and yes, if you don't include the Terry Pratchett bit, your server will (probably) explolde ;)
 ```ApacheConf
 # First we open up the permissions
 <Directory "D:/path_to/your_default_localhost_folder/">
     Options Indexes FollowSymLinks
     AllowOverride All
     Require local # Remove for Apache versions < 2.4
+    
+    <IfModule headers_module>
+        header set X-Clacks-Overhead "GNU Terry Pratchett"
+    </IfModule>
 </Directory>
 
 # Then we set the host name
